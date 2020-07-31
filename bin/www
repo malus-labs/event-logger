@@ -7,6 +7,20 @@
 var app = require('../app');
 var debug = require('debug')('event-logger:server');
 var http = require('http');
+const Web3 = require("web3");
+const storeHubABI = require("../abi/storeHub");
+
+/**
+ * Setting up web3 along with the main smart contract.
+ */
+
+if (typeof web3 !== 'undefined') {
+  web3 = new Web3(web3.currentProvider);
+} else { 
+  web3 = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:8545"));
+}
+
+var storeHub = new web3.eth.Contract(storeHubABI, '0xCFFEd78f41A003C370E66DFE0989b2e78A1c4c7d');
 
 /**
  * Get port from environment and store in Express.
@@ -88,3 +102,71 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+storeHub.events.StoreCreated({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
+
+storeHub.events.PermissionUpdated({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
+
+storeHub.events.StakeUpdated({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
+
+storeHub.events.BalanceUpdated({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
+
+
+storeHub.events.CollateralReliefUpdated({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
+
+
+storeHub.events.CollateralGenerated({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
+
+
+storeHub.events.CollateralReleased({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
+
+
+storeHub.events.MetaDataUpdated({}, function(error, result) {
+  if (!error) {
+    console.log(result);
+  } else {
+    console.log(error);
+  }
+});
