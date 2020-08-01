@@ -7,8 +7,9 @@
 var app = require('../app');
 var debug = require('debug')('event-logger:server');
 var http = require('http');
-const Web3 = require("web3");
-const storeHubABI = require("../abi/storeHub");
+const StoreCreated = require('../event_handling/StoreCreated');
+const Web3 = require('web3');
+const storeHubABI = require('../abi/storeHub');
 
 /**
  * Setting up web3 along with the main smart contract.
@@ -20,13 +21,13 @@ if (typeof web3 !== 'undefined') {
   web3 = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:8545"));
 }
 
-var storeHub = new web3.eth.Contract(storeHubABI, '0xCFFEd78f41A003C370E66DFE0989b2e78A1c4c7d');
+var storeHub = new web3.eth.Contract(storeHubABI, '0x364eA2718637b078c229EAACE1DF23912bEc179B');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 
 /**
@@ -103,9 +104,13 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
+/**
+ * Events listening for Websocket Web3 server "listening" event.
+ */
+
 storeHub.events.StoreCreated({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    StoreCreated(result.returnValues.storeId, result.returnValues.store, result.returnValues.owner)
   } else {
     console.log(error);
   }
