@@ -7,9 +7,16 @@
 var app = require('../app');
 var debug = require('debug')('event-logger:server');
 var http = require('http');
-const StoreCreated = require('../event_handling/StoreCreated');
 const Web3 = require('web3');
 const storeHubABI = require('../abi/storeHub');
+const StoreCreated = require('../event_handling/StoreCreated');
+const PermissionUpdated = require('../event_handling/PermissionUpdated');
+const StakeUpdated = require('../event_handling/StakeUpdated');
+const BalanceUpdated = require('../event_handling/BalanceUpdated');
+const CollateralReliefUpdated = require('../event_handling/CollateralReliefUpdated');
+const CollateralGenerated = require('../event_handling/CollateralGenerated');
+const CollateralReleased = require('../event_handling/CollateralReleased');
+const MetaDataUpdated = require('../event_handling/MetaDataUpdated');
 
 /**
  * Setting up web3 along with the main smart contract.
@@ -118,7 +125,8 @@ storeHub.events.StoreCreated({}, function(error, result) {
 
 storeHub.events.PermissionUpdated({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    PermissionUpdated(result.returnValues.storeId, result.returnValues.approvalAddress, 
+      result.returnValues.permisionType, result.returnValues.isApproved);
   } else {
     console.log(error);
   }
@@ -126,7 +134,7 @@ storeHub.events.PermissionUpdated({}, function(error, result) {
 
 storeHub.events.StakeUpdated({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    StakeUpdated(result.returnValues.storeId, result.returnValues.amount, result.returnValues.expireTime);
   } else {
     console.log(error);
   }
@@ -134,7 +142,7 @@ storeHub.events.StakeUpdated({}, function(error, result) {
 
 storeHub.events.BalanceUpdated({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    BalanceUpdated(result.returnValues.storeId, result.returnValues.amount);
   } else {
     console.log(error);
   }
@@ -143,7 +151,7 @@ storeHub.events.BalanceUpdated({}, function(error, result) {
 
 storeHub.events.CollateralReliefUpdated({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    CollateralReliefUpdated(result.returnValues.storeId, result.returnValues.collateralRelief, result.returnValues.avaiableFunds);
   } else {
     console.log(error);
   }
@@ -152,7 +160,7 @@ storeHub.events.CollateralReliefUpdated({}, function(error, result) {
 
 storeHub.events.CollateralGenerated({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    CollateralGenerated(result.returnValues.storeId, result.returnValues.amount);
   } else {
     console.log(error);
   }
@@ -161,7 +169,7 @@ storeHub.events.CollateralGenerated({}, function(error, result) {
 
 storeHub.events.CollateralReleased({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    CollateralReleased(result.returnValues.storeId, result.returnValues.amount);
   } else {
     console.log(error);
   }
@@ -170,7 +178,7 @@ storeHub.events.CollateralReleased({}, function(error, result) {
 
 storeHub.events.MetaDataUpdated({}, function(error, result) {
   if (!error) {
-    console.log(result);
+    MetaDataUpdated(result.returnValues.storeId, result.returnValues.metaData);
   } else {
     console.log(error);
   }
