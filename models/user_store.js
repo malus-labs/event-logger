@@ -26,4 +26,6 @@ const User_Store = db.define("users_stores", {
   timestamps: false
 });
 
+User_Store.removeAttribute('id');
+
 module.exports = User_Store;
