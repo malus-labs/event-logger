@@ -17,4 +17,5 @@ const User = db.define("users", {
   timestamps: false
 });
 
+
 module.exports = User;

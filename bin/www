@@ -28,7 +28,7 @@ if (typeof web3 !== 'undefined') {
   web3 = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:8545"));
 }
 
-var storeHub = new web3.eth.Contract(storeHubABI, '0x364eA2718637b078c229EAACE1DF23912bEc179B');
+var storeHub = new web3.eth.Contract(storeHubABI, '0xc127DEdC2845253333f0c306a8E054a8BFE0560d');
 
 /**
  * Get port from environment and store in Express.
