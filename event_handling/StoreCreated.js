@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const getUserId = require('../usefull_functions/getUserId');
 const Store = require('../models/store');
 const User_Store = require('../models/user_store');
 
@@ -23,39 +23,17 @@ async function StoreCreated(store_id, wallet_address, owner) {
               website: "",
         });
 
-        //Check if user exist.
-        var userID;
-        const user = await User.findAll({
-            where: {
-                wallet_address: owner
-            }
-        });
-
-        if(user == '') {
-            await User.create({wallet_address: owner});
-
-            const user = await User.findAll({
-                where: {
-                    wallet_address: owner
-                }
+   
+        (async () => {
+            var UserId = await getUserId(owner);
+            await User_Store.create({
+                user_id: UserId,
+                store_id: store_id,
+                is_owner: true,
+                is_spender: false,
             });
-            
-            userID = user[0].dataValues.user_id;
-        }
-        else {
-            userID = user[0].dataValues.user_id;
-        }
-
+        })()
         
-        //Insert into users_stores table
-        await User_Store.create({
-            user_id: userID,
-            store_id: store_id,
-            is_owner: true,
-            is_spender: false,
-        });
-        
-
     } catch (err) {
         console.log(err);
     }
