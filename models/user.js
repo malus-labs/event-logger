@@ -4,7 +4,7 @@ const db = require("./../database/db");
 const User = db.define("users", {
   user_id: {
     type: Sequelize.INTEGER,
-    allowNull: false,
+    allowNull: true,
     primaryKey: true,
   },
 
