@@ -24,7 +24,7 @@ async function StoreCreated(store_id, wallet_address, owner) {
         });
 
    
-        (async () => {
+        (async () => { //wrap in async to get result from async function.
             var UserId = await getUserId(owner);
             await User_Store.create({
                 user_id: UserId,
