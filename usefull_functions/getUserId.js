@@ -10,6 +10,7 @@ async function getUserId(userWalletAddress) {
         }
     });
 
+    //If user does not exist enter into User table and return UserId.
     if(user == '') {
         await User.create({wallet_address: userWalletAddress});
 
