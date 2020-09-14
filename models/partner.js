@@ -2,12 +2,12 @@ const Sequelize = require("sequelize");
 const db = require("./../database/db");
 
 const Partner = db.define("partners", {
-  id: {
+  store_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
 
-  store_id: {
+  partner_id: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
@@ -15,5 +15,7 @@ const Partner = db.define("partners", {
 }, {
   timestamps: false
 });
+
+Partner.removeAttribute('id');
 
 module.exports = Partner;
