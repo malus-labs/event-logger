@@ -5,7 +5,7 @@ async function changeSpenderPermission(store_id, approvalAddress, isApproved) {
 
     ////wrap in async to get result from async function.
     (async () => {
-        //Get userId of new Store owner.
+        //Get userId of new Store spender.
         var UserId = await getUserId(approvalAddress);
 
         //Check if user was associated with store in the past.
@@ -16,7 +16,7 @@ async function changeSpenderPermission(store_id, approvalAddress, isApproved) {
             }
         });
 
-        //If owner was never associated with store add to User_Store table.
+        //If spender was never associated with store add to User_Store table.
         if(newSpender == '') {
             await User_Store.create({
                 user_id: UserId,
@@ -27,7 +27,7 @@ async function changeSpenderPermission(store_id, approvalAddress, isApproved) {
         }
         else {
             
-            //If owner was associated with the store update to User_Store table.
+            //If spender was associated with the store update to User_Store table.
             await User_Store.update(
                 {
                     is_spender: isApproved
