@@ -38,8 +38,8 @@ async function changeStoreOwner(store_id, approvalAddress) {
                 });
             }
             else {
-                
-                //If owner was associated with the store add to User_Store table.
+
+                //If owner was associated with the store update to User_Store table.
                 await User_Store.update(
                     {
                         is_owner: true
