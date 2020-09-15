@@ -3,7 +3,7 @@ const Store = require('../models/store');
 async function BalanceUpdated(store_id, amount) {
     try {
 
-        //Update the amount in the database.
+        //Update the available_funds in the database.
         await Store.update(
             {
                 available_funds: amount

@@ -152,7 +152,7 @@ storeHub.events.BalanceUpdated({}, function(error, result) {
 });
 
 
-storeHub.events.CollateralReliefUpdated({}, function(error, result) {
+storeHub.events.CollateralReliefUpdated({}, function(error, result) { //later
   if (!error) {
     const fundsInEther = web3.utils.fromWei(result.returnValues.funds, 'ether');
     const collateralInEther = web3.utils.fromWei(result.returnValues.collateralRelief, 'ether');

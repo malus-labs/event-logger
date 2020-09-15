@@ -43,6 +43,12 @@ const storeHubABI = [
 				"internalType": "uint256",
 				"name": "amount",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "avaiableFunds",
+				"type": "uint256"
 			}
 		],
 		"name": "CollateralGenerated",
@@ -61,6 +67,12 @@ const storeHubABI = [
 				"indexed": false,
 				"internalType": "uint256",
 				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "avaiableFunds",
 				"type": "uint256"
 			}
 		],
@@ -87,6 +99,12 @@ const storeHubABI = [
 				"internalType": "uint256",
 				"name": "avaiableFunds",
 				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "rate",
+				"type": "uint256"
 			}
 		],
 		"name": "CollateralReliefUpdated",
@@ -103,9 +121,9 @@ const storeHubABI = [
 			},
 			{
 				"indexed": false,
-				"internalType": "bytes32[5]",
+				"internalType": "bytes[5]",
 				"name": "metaData",
-				"type": "bytes32[5]"
+				"type": "bytes[5]"
 			}
 		],
 		"name": "MetaDataUpdated",
@@ -160,6 +178,12 @@ const storeHubABI = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
+				"name": "avaiableFunds",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
 				"name": "expireTime",
 				"type": "uint256"
 			}
@@ -198,6 +222,11 @@ const storeHubABI = [
 				"internalType": "uint256",
 				"name": "_amount",
 				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_avaiableFunds",
+				"type": "uint256"
 			}
 		],
 		"name": "collateralGeneratedEvent",
@@ -210,6 +239,11 @@ const storeHubABI = [
 			{
 				"internalType": "uint256",
 				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_avaiableFunds",
 				"type": "uint256"
 			}
 		],
@@ -228,6 +262,11 @@ const storeHubABI = [
 			{
 				"internalType": "uint256",
 				"name": "_avaiableFunds",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_rate",
 				"type": "uint256"
 			}
 		],
@@ -330,9 +369,9 @@ const storeHubABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "bytes32[5]",
+				"internalType": "bytes[5]",
 				"name": "_metaData",
-				"type": "bytes32[5]"
+				"type": "bytes[5]"
 			}
 		],
 		"name": "metaDataEvent",
@@ -394,6 +433,11 @@ const storeHubABI = [
 			{
 				"internalType": "uint256",
 				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_avaiableFunds",
 				"type": "uint256"
 			},
 			{
