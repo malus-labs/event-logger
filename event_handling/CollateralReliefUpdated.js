@@ -1,9 +1,28 @@
-const db = require('../database/db');
+const Store = require('../models/store');
 
-function CollateralReliefUpdated(store_id, collateralRelief, avaiableFunds) {
-    console.log(store_id);
-    console.log(collateralRelief);
-    console.log(avaiableFunds);
+async function CollateralReliefUpdated(store_id, collateralRelief, availableFunds) {
+    /*
+    try {
+
+        //Update the amount in the database.
+        await Store.update(
+            {
+
+                collateral_relief: collateralRelief
+    
+            },
+            {
+                where: {
+                    store_id: store_id
+                }
+            }
+        )
+
+    }+
+    catch (err) {
+        console.log(err);
+    }
+    */
 }
 
 module.exports = CollateralReliefUpdated;
