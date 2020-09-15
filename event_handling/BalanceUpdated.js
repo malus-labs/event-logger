@@ -1,8 +1,25 @@
-const db = require('../database/db');
+const Store = require('../models/store');
 
-function BalanceUpdated(store_id, amount) {
-    console.log(store_id);
-    console.log(amount);
+async function BalanceUpdated(store_id, amount) {
+    try {
+
+        //Update the amount in the database.
+        await Store.update(
+            {
+                available_funds: amount
+    
+            },
+            {
+                where: {
+                    store_id: store_id
+                }
+            }
+        )
+
+    }
+    catch (err) {
+        console.log(err);
+    }
 }
 
 module.exports = BalanceUpdated;

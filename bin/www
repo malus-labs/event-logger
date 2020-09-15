@@ -28,6 +28,8 @@ if (typeof web3 !== 'undefined') {
   web3 = new Web3(new Web3.providers.WebsocketProvider("ws://localhost:8545"));
 }
 
+
+
 var storeHub = new web3.eth.Contract(storeHubABI, '0xc127DEdC2845253333f0c306a8E054a8BFE0560d');
 
 /**
@@ -132,7 +134,7 @@ storeHub.events.PermissionUpdated({}, function(error, result) {
   }
 });
 
-storeHub.events.StakeUpdated({}, function(error, result) {
+storeHub.events.StakeUpdated({}, function(error, result) { //later
   if (!error) {
     StakeUpdated(result.returnValues.storeId, result.returnValues.amount, result.returnValues.expireTime);
   } else {
@@ -142,7 +144,8 @@ storeHub.events.StakeUpdated({}, function(error, result) {
 
 storeHub.events.BalanceUpdated({}, function(error, result) {
   if (!error) {
-    BalanceUpdated(result.returnValues.storeId, result.returnValues.amount);
+    const amountInEther = web3.utils.fromWei(result.returnValues.amount, 'ether');
+    BalanceUpdated(result.returnValues.storeId, amountInEther);
   } else {
     console.log(error);
   }
@@ -151,14 +154,16 @@ storeHub.events.BalanceUpdated({}, function(error, result) {
 
 storeHub.events.CollateralReliefUpdated({}, function(error, result) {
   if (!error) {
-    CollateralReliefUpdated(result.returnValues.storeId, result.returnValues.collateralRelief, result.returnValues.avaiableFunds);
+    const fundsInEther = web3.utils.fromWei(result.returnValues.funds, 'ether');
+    const collateralInEther = web3.utils.fromWei(result.returnValues.collateralRelief, 'ether');
+    CollateralReliefUpdated(result.returnValues.storeId, collateralInEther, fundsInEther);
   } else {
     console.log(error);
   }
 });
 
 
-storeHub.events.CollateralGenerated({}, function(error, result) {
+storeHub.events.CollateralGenerated({}, function(error, result) { //later
   if (!error) {
     CollateralGenerated(result.returnValues.storeId, result.returnValues.amount);
   } else {
@@ -167,7 +172,7 @@ storeHub.events.CollateralGenerated({}, function(error, result) {
 });
 
 
-storeHub.events.CollateralReleased({}, function(error, result) {
+storeHub.events.CollateralReleased({}, function(error, result) { //later
   if (!error) {
     CollateralReleased(result.returnValues.storeId, result.returnValues.amount);
   } else {
