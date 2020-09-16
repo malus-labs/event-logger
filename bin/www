@@ -29,7 +29,7 @@ if (typeof web3 !== 'undefined') {
 
 
 
-var storeHub = new web3.eth.Contract(storeHubABI, '0x822A3f1B1649bBE1539605F93222c682C2EC55b2');
+var storeHub = new web3.eth.Contract(storeHubABI, '0x8A19AFFbaD5D51131385d4438b0dA9040aD844Ae');
 
 /**
  * Get port from environment and store in Express.
