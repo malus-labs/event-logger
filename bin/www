@@ -152,11 +152,12 @@ storeHub.events.BalanceUpdated({}, function(error, result) {
 });
 
 
-storeHub.events.CollateralReliefUpdated({}, function(error, result) { //later
+storeHub.events.CollateralReliefUpdated({}, function(error, result) { 
   if (!error) {
-    const fundsInEther = web3.utils.fromWei(result.returnValues.funds, 'ether');
+    const rate = result.returnValues.rate / 100;
+    const fundsInEther = web3.utils.fromWei(result.returnValues.avaiableFunds, 'ether');
     const collateralInEther = web3.utils.fromWei(result.returnValues.collateralRelief, 'ether');
-    CollateralReliefUpdated(result.returnValues.storeId, collateralInEther, fundsInEther);
+    CollateralReliefUpdated(result.returnValues.storeId, collateralInEther, fundsInEther, rate);
   } else {
     console.log(error);
   }
