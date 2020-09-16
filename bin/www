@@ -15,6 +15,7 @@ const StakeUpdated = require('../event_handling/StakeUpdated');
 const BalanceUpdated = require('../event_handling/BalanceUpdated');
 const CollateralReliefUpdated = require('../event_handling/CollateralReliefUpdated');
 const CollateralGenerated = require('../event_handling/CollateralGenerated');
+const CollateralReleased = require('../event_handling/CollateralReleased');
 const MetaDataUpdated = require('../event_handling/MetaDataUpdated');
 
 /**
@@ -176,7 +177,9 @@ storeHub.events.CollateralGenerated({}, function(error, result) {
 
 storeHub.events.CollateralReleased({}, function(error, result) { 
   if (!error) {
-    //CollateralUpdated(result.returnValues.storeId, result.returnValues.amount);
+    const collateralInEther = web3.utils.fromWei(result.returnValues.collateral, 'ether');
+    const fundsInEther = web3.utils.fromWei(result.returnValues.avaiableFunds, 'ether');
+    CollateralReleased(result.returnValues.storeId, collateralInEther, fundsInEther);
   } else {
     console.log(error);
   }
