@@ -1,8 +1,23 @@
-const db = require('../database/db');
+const Store = require('../models/store');
 
-function CollateralGenerated(store_id, amount) {
-    console.log(store_id);
-    console.log(amount);
+async function CollateralGenerated(store_id, amount, availableFunds) {
+    /*
+    try {
+        await Store.update(
+            { 
+                available_funds: availableFunds,
+            },
+            {
+                where: {
+                    store_id: store_id
+                }
+            }
+        )
+    }
+    catch (err) {
+        console.log(err);
+    }
+    */
 }
 
 module.exports = CollateralGenerated;
