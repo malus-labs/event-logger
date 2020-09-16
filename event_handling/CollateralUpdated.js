@@ -1,6 +1,6 @@
 const Store = require('../models/store');
 
-async function CollateralGenerated(store_id, amount, availableFunds) {
+async function CollateralUpdated(store_id, collateral, stake, availableFunds) {
     /*
     try {
         await Store.update(
@@ -20,4 +20,4 @@ async function CollateralGenerated(store_id, amount, availableFunds) {
     */
 }
 
-module.exports = CollateralGenerated;
+module.exports = CollateralUpdated;
