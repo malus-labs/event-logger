@@ -14,8 +14,7 @@ const PermissionUpdated = require('../event_handling/PermissionUpdated');
 const StakeUpdated = require('../event_handling/StakeUpdated');
 const BalanceUpdated = require('../event_handling/BalanceUpdated');
 const CollateralReliefUpdated = require('../event_handling/CollateralReliefUpdated');
-const CollateralGenerated = require('../event_handling/CollateralGenerated');
-const CollateralReleased = require('../event_handling/CollateralReleased');
+const CollateralUpdated = require('../event_handling/CollateralUpdated');
 const MetaDataUpdated = require('../event_handling/MetaDataUpdated');
 
 /**
@@ -164,17 +163,17 @@ storeHub.events.CollateralReliefUpdated({}, function(error, result) {
   }
 });
 
-storeHub.events.CollateralGenerated({}, function(error, result) { //later
+storeHub.events.CollateralGenerated({}, function(error, result) { 
   if (!error) {
-    CollateralGenerated(result.returnValues.storeId, result.returnValues.amount);
+    //CollateralUpdated(result.returnValues.storeId, result.returnValues.amount);
   } else {
     console.log(error);
   }
 });
 
-storeHub.events.CollateralReleased({}, function(error, result) { //later
+storeHub.events.CollateralReleased({}, function(error, result) { 
   if (!error) {
-    CollateralReleased(result.returnValues.storeId, result.returnValues.amount);
+    //CollateralUpdated(result.returnValues.storeId, result.returnValues.amount);
   } else {
     console.log(error);
   }

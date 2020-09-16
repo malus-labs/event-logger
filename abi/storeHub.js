@@ -41,7 +41,19 @@ const storeHubABI = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "amount",
+				"name": "amountGenerated",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "collateral",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "stake",
 				"type": "uint256"
 			},
 			{
@@ -66,7 +78,13 @@ const storeHubABI = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "amount",
+				"name": "amountReleased",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "collateral",
 				"type": "uint256"
 			},
 			{
@@ -220,7 +238,17 @@ const storeHubABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_amount",
+				"name": "_amountGenerated",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_collateral",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_stake",
 				"type": "uint256"
 			},
 			{
@@ -238,7 +266,12 @@ const storeHubABI = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_amount",
+				"name": "_amountReleased",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_collateral",
 				"type": "uint256"
 			},
 			{
