@@ -121,9 +121,9 @@ const storeHubABI = [
 			},
 			{
 				"indexed": false,
-				"internalType": "bytes[5]",
+				"internalType": "string[5]",
 				"name": "metaData",
-				"type": "bytes[5]"
+				"type": "string[5]"
 			}
 		],
 		"name": "MetaDataUpdated",
@@ -369,9 +369,9 @@ const storeHubABI = [
 	{
 		"inputs": [
 			{
-				"internalType": "bytes[5]",
+				"internalType": "string[5]",
 				"name": "_metaData",
-				"type": "bytes[5]"
+				"type": "string[5]"
 			}
 		],
 		"name": "metaDataEvent",
