@@ -14,7 +14,7 @@ const PermissionUpdated = require('../event_handling/PermissionUpdated');
 const StakeUpdated = require('../event_handling/StakeUpdated');
 const BalanceUpdated = require('../event_handling/BalanceUpdated');
 const CollateralReliefUpdated = require('../event_handling/CollateralReliefUpdated');
-const CollateralUpdated = require('../event_handling/CollateralUpdated');
+const CollateralGenerated = require('../event_handling/CollateralGenerated');
 const MetaDataUpdated = require('../event_handling/MetaDataUpdated');
 
 /**
@@ -29,7 +29,7 @@ if (typeof web3 !== 'undefined') {
 
 
 
-var storeHub = new web3.eth.Contract(storeHubABI, '0x822A3f1B1649bBE1539605F93222c682C2EC55b2');
+var storeHub = new web3.eth.Contract(storeHubABI, '0x8A19AFFbaD5D51131385d4438b0dA9040aD844Ae');
 
 /**
  * Get port from environment and store in Express.
@@ -165,7 +165,10 @@ storeHub.events.CollateralReliefUpdated({}, function(error, result) {
 
 storeHub.events.CollateralGenerated({}, function(error, result) { 
   if (!error) {
-    //CollateralUpdated(result.returnValues.storeId, result.returnValues.amount);
+    const collateralInEther = web3.utils.fromWei(result.returnValues.collateral, 'ether');
+    const stakeInEther = web3.utils.fromWei(result.returnValues.stake, 'ether');
+    const fundsInEther = web3.utils.fromWei(result.returnValues.avaiableFunds, 'ether');
+    CollateralGenerated(result.returnValues.storeId, collateralInEther, stakeInEther, fundsInEther);
   } else {
     console.log(error);
   }
